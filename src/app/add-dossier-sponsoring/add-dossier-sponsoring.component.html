@@ -13,6 +13,16 @@
 
 
         <form class="forms-sample" (submit)="AddDossier(validationForm.value)" [formGroup]="validationForm">
+
+          <div class="mb-3">
+            <label for="titre" class="form-label">Titre du dossier</label>
+            <textarea class="form-control" id="titre" name="titre" formControlName="titre" autocomplete="off" [(ngModel)]="sponsoring.titre" placeholder="Titre"
+                      [ngClass]="{'is-invalid': isFormSubmitted && validationForm.get('titre')?.errors}" required></textarea>
+            <div *ngIf="isFormSubmitted && validationForm.get('titre')?.errors" class="invalid-feedback">
+              Le titre du dossier est requis.
+            </div>
+          </div>
+
           <div class="mb-3">
             <label for="descriptionDossier" class="form-label">Description du dossier</label>
             <textarea class="form-control" id="descriptionDossier" name="description" formControlName="description" autocomplete="off" [(ngModel)]="sponsoring.description" placeholder="Description"

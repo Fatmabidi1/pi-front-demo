@@ -23,7 +23,6 @@ export enum TypePack {
     idDossier: number;
     description: string;
     titre: string;
-
     publicCible: string;
     planVisibilite: string;
     optionsPartenariat: string;

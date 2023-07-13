@@ -14,6 +14,7 @@ import {SponsoringService} from "../services/sponsoring.service";
 import { Router } from '@angular/router';
 import { EventService } from 'src/app/services/event.service';
 import { Event } from 'src/app/models/event';
+import {MessagesModalService} from "../alerts/messages-modal.service";
 
 
 
@@ -37,23 +38,22 @@ export class AddDossierSponsoringComponent implements OnInit {
   isFormValid: boolean;
   events: Event[];
   packs: Pack[] = [];
-  newPack: Pack = { idPack: 0, typePack: TypePack.GOLD, descritpion: '', offreSponsoringSet: [] };
-  showAddPackSection = true;
 
 
   constructor(
     private router: Router,
     private SponsoringService: SponsoringService,
     private eventService: EventService,
-    public formBuilder: UntypedFormBuilder){
+    public formBuilder: UntypedFormBuilder,
+    public messageService:MessagesModalService){
 
   }
 
   ngOnInit(): void {
 
     this.validationForm = this.formBuilder.group({
-
       description: ['', Validators.required],
+      titre: ['', Validators.required],
       eventId: ['', Validators.required],
       contactCoordonnees: ['', Validators.required],
       optionsPartenariat: ['', Validators.required],
@@ -158,7 +158,9 @@ export class AddDossierSponsoringComponent implements OnInit {
         }, 1000);
 
         this.isFormSubmitted = false;
-      });
+
+        this.messageService.toastSuccess("Dossier ajouté avec succées");
+      }, error => this.messageService.toastError("Dossier n'est pas modifié"));
     }
 
   }

@@ -4,9 +4,9 @@
       <li class="breadcrumb-item active" aria-current="page">Dossiers sponsoring</li>
     </ol>
   </nav>
-  
-  
-  
+
+
+
   <div class="row">
     <div class="col-md-12 stretch-card">
       <div class="card">
@@ -19,20 +19,20 @@
                   <th>Id</th>
                   <th>Nom dossier</th>
                   <th>Nom Evenement</th>
-                
-           
+
+
                 </tr>
               </thead>
               <tbody>
-              
+
                 <tr *ngFor="let sponsoring of DossierSponsorings">
                     <td>{{ sponsoring.idDossier }}</td>
-                    <td>{{ sponsoring.description }}</td>
+                    <td>{{ sponsoring.titre }}</td>
                     <td><a target="_blank" href="../../../event/{{sponsoring.event.idEvent}}">{{ sponsoring.event.nom }}</a></td>
-                    
-                   
+
+
                   </tr>
-  
+
               </tbody>
               <tfoot>
                 <tr>
