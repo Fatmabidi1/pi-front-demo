@@ -1,0 +1,161 @@
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Les packs du dossier sponsoring {{selectedSponsoring.titre}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th colspan="2">Description du dossier</th>
+        <td colspan="2">{{ selectedSponsoring.description }}</td>
+      </tr>
+      <tr>
+        <th colspan="2">Le public cible</th>
+        <td colspan="2">{{ selectedSponsoring.publicCible }}</td>
+      </tr>
+      <tr>
+        <th colspan="2">Le plan de Visibilité</th>
+        <td colspan="2">{{ selectedSponsoring.planVisibilite }}</td>
+      </tr>
+      <tr>
+        <th colspan="2">Option de Partenariat</th>
+        <td colspan="2">{{ selectedSponsoring.optionsPartenariat }}</td>
+      </tr>
+      <tr>
+        <th colspan="2">Contact et Coordonnées</th>
+        <td colspan="2">{{ selectedSponsoring.contactCoordonnees }}</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td colspan="4" class="pack-header bg-light">Les packs disponibles</td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <!-- Utilisez une boucle *ngFor pour afficher chaque pack -->
+          <div *ngFor="let pack of selectedSponsoring.pack_list" class="pack-item">
+            <div class="pack-description">
+              <strong>Description:</strong> {{ pack.descritpion }}
+            </div>
+            <div>
+              <strong>Type de pack:</strong> {{ pack.typePack }}
+            </div>
+            <div>
+              <strong>ID du pack:</strong> {{ pack.idPack }}
+            </div>
+            <br>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="closeAndOpenModal2()">Modifier le dossier</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="modal.close()">Fermer</button>
+  </div>
+</ng-template>
+
+<ng-template #modal2 let-modal2>
+
+  <div class="modal-body">
+    <form  #ngForm="ngForm">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea ngModel class="form-control" id="description" name="description" aria-describedby="emailHelp" placeholder="Enter description"></textarea>
+      </div>
+      <!--      <div class="form-group">-->
+      <!--        <label for="exampleInputPassword1">Password</label>-->
+      <!--        <input ngModel type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+      <!--      </div>-->
+    </form>
+    </div>
+
+</ng-template>
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="../dashboard">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Dossiers sponsoring</li>
+    </ol>
+  </nav>
+
+
+
+  <div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Dossiers</h6>
+          <div class="table-responsive">
+            <table   class="table border-1 border-dark">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nom dossier</th>
+                  <th>Nom Evenement</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let sponsoring of DossierSponsorings">
+                  <td>{{ sponsoring.idDossier }}</td>
+                  <td>
+                    <button (click)="selectItem(sponsoring, content)" class="cursor-pointer btn">
+                       {{sponsoring.titre}}
+                    </button>
+                  </td>
+                  <td>
+
+                    <a *ngIf="sponsoring?.evenement?.idEvent" target="_blank" href="../../../event/{{sponsoring.evenement.idEvent}}">
+                    {{ sponsoring.evenement.nom }}</a>
+
+                    <p *ngIf="!sponsoring?.evenement?.idEvent">
+                      pas encore associer à un événement</p>
+                  </td>
+
+
+                </tr>
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+
+           <!-- <div *ngIf="selectedPacks.length > 0">
+              <h2>Selected Packs</h2>
+              <ul>
+                <li *ngFor="let pack of selectedPacks">
+                  {{ pack.idPack }}
+
+                </li>
+              </ul>
+            </div>-->
+
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>

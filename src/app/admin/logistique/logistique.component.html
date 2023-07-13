@@ -1,0 +1,58 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="../dashboard">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Listes</li>
+    </ol>
+  </nav>
+ 
+ 
+  <div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          
+          <div class="table-responsive">
+            <table id="LogistiquesTable" class="table border-1 border-dark">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>description</th>
+                  <th>Nom d'événement</th>
+                
+                
+               
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let logistique of logistiques">
+                
+                  <td>{{logistique.idLogistique}}</td>
+                 
+                  <td>{{logistique.description}}  </td>
+
+                  <td ><a target="_blank" href="../../../event/{{logistique.evenement.idEvent}}">{{logistique.evenement.nom}}</a> </td>
+                  
+               
+               
+               
+                </tr>
+             
+              
+             
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
